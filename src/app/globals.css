@@ -32,3 +32,23 @@ body {
 .animate-scroll {
   animation: scroll 20s linear infinite;
 }
+
+@keyframes gradient-x {
+  0%, 100% {
+    background-position: 0% center;
+  }
+  50% {
+    background-position: 100% center;
+  }
+}
+.animate-gradient-x {
+  background-size: 200% 200%;
+  animation: gradient-x 8s ease infinite;
+}
+/* Oculta no mobile (abaixo de 768px) */
+@media (max-width: 767px) {
+  .hidden-mobile {
+    display: none !important;
+  }
+}
+
