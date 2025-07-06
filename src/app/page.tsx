@@ -12,6 +12,8 @@ import CustomCursor from "./CustomCursor";
 import Contato from "./Contato";
 import Laptop3D from "./Laptop3D";
 import Footer from "./Footer";
+import { FaInstagram, FaLinkedin } from "react-icons/fa";
+
 
 
 export default function Home() {
@@ -32,7 +34,7 @@ export default function Home() {
     {
       titulo: "Pare Verde",
       descricao: "Projeto institucional para prefeituras.",
-      link: "https://biotechterra.vercel.app",
+      link: "https://pareverde-lp.vercel.app",
       imagem: "/pareverde.png",
     },
   ];
@@ -49,6 +51,24 @@ export default function Home() {
         <nav className="flex justify-between items-center mb-10">
 
           <h1 className="text-2xl font-bold">H-DEV</h1>
+          <div className="flex gap-4">
+            <a
+              href="https://www.instagram.com/h3ittor_g_"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-300 hover:text-pink-500 text-2xl transition-transform hover:scale-110"
+            >
+              <FaInstagram />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/heitorferreira08"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-300 hover:text-blue-500 text-2xl transition-transform hover:scale-110"
+            >
+              <FaLinkedin />
+            </a>
+          </div>
           <div className="space-x-6">
             <Link href="/" className="hover:text-blue-400 transition">Início</Link>
             <Link href="#contato" className="hover:text-blue-400 transition">Contato</Link>

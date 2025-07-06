@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { FaInstagram, FaLinkedin } from "react-icons/fa";
 
 export default function Footer() {
   const sections = [
@@ -20,7 +21,10 @@ export default function Footer() {
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-gray-800 via-gray-900 to-black animate-gradient-x"></div>
 
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-        <nav className="flex gap-8">
+        
+        {/* Agrupando seções e ícones do lado esquerdo */}
+        <nav className="flex flex-wrap items-center gap-6">
+          {/* Botões das seções */}
           {sections.map(({ id, label }) => (
             <motion.button
               key={id}
@@ -38,8 +42,29 @@ export default function Footer() {
               />
             </motion.button>
           ))}
+
+          {/* Ícones de redes sociais */}
+          <div className="flex gap-4 ml-4">
+            <a
+              href="https://www.instagram.com/h3ittor_g_"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-300 hover:text-pink-500 text-2xl transition-transform hover:scale-110"
+            >
+              <FaInstagram />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/heitorferreira08"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-300 hover:text-blue-500 text-2xl transition-transform hover:scale-110"
+            >
+              <FaLinkedin />
+            </a>
+          </div>
         </nav>
 
+        {/* Botão para voltar ao topo */}
         <motion.button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           whileHover={{ scale: 1.1, color: "#34D399", textShadow: "0 0 10px #34D399" }}
