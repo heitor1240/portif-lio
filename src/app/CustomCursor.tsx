@@ -62,7 +62,7 @@ export default function CustomCursor() {
         top: position.y,
         transform: `translate(-50%, -50%) scale(${isActive ? 1.5 : 1})`,
       }}
-      className={`pointer-events-none fixed z-50 w-6 h-6 rounded-full bg-blue-500 mix-blend-difference transition-transform duration-150`}
+      className={`pointer-events-none fixed z-50 w-6 h-6 rounded-full bg-blue-500 mix-blend-difference transition-transform duration-150 hidden-mobile`}
     />
   );
 }
