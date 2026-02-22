@@ -5,8 +5,17 @@ import { useEffect, useState } from "react";
 export default function CustomCursor() {
   const [position, setPosition] = useState({ x: -100, y: -100 });
   const [isActive, setIsActive] = useState(false);
+  const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
+    const mqPointerFine = window.matchMedia("(pointer: fine)");
+    if (!mqPointerFine.matches) {
+      setEnabled(false);
+      return;
+    }
+    setEnabled(true);
+    document.body.classList.add("custom-cursor-hidden");
+
     function onMouseMove(e: MouseEvent) {
       setPosition({ x: e.clientX, y: e.clientY });
     }
@@ -19,11 +28,12 @@ export default function CustomCursor() {
       setIsActive(false);
     }
 
-    window.addEventListener("mousemove", onMouseMove);
-    window.addEventListener("mousedown", onMouseDown);
-    window.addEventListener("mouseup", onMouseUp);
+    window.addEventListener("mousemove", onMouseMove, { passive: true });
+    window.addEventListener("mousedown", onMouseDown, { passive: true });
+    window.addEventListener("mouseup", onMouseUp, { passive: true });
 
     return () => {
+      document.body.classList.remove("custom-cursor-hidden");
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("mousedown", onMouseDown);
       window.removeEventListener("mouseup", onMouseUp);
@@ -31,6 +41,7 @@ export default function CustomCursor() {
   }, []);
 
   useEffect(() => {
+    if (!enabled) return;
     const interactiveElements = document.querySelectorAll(
       'a, button, input, textarea, select, label'
     );
@@ -53,10 +64,11 @@ export default function CustomCursor() {
         el.removeEventListener("mouseleave", handleMouseLeave);
       });
     };
-  }, []);
+  }, [enabled]);
 
   return (
-    <div
+    enabled ? (
+      <div
       style={{
         left: position.x,
         top: position.y,
@@ -64,5 +76,6 @@ export default function CustomCursor() {
       }}
       className={`pointer-events-none fixed z-50 w-6 h-6 rounded-full bg-blue-500 mix-blend-difference transition-transform duration-150`}
     />
+    ) : null
   );
 }

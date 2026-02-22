@@ -20,7 +20,6 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
-  cursor: none;
 }
 
 /* Animação para carrossel */
@@ -31,4 +30,9 @@ body {
 
 .animate-scroll {
   animation: scroll 20s linear infinite;
+}
+
+/* Oculta o cursor apenas quando aplicável via JS */
+.custom-cursor-hidden {
+  cursor: none;
 }

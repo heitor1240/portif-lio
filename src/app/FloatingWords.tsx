@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useMemo } from "react";
 
 const words = [
   "React",
@@ -14,14 +15,22 @@ const words = [
 ];
 
 export default function FloatingWords() {
-  return (
-    <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden z-0">
-      {words.map((word, i) => {
-        const x = Math.random() * 90 + 5; // evita bordas extremas
+  const items = useMemo(
+    () =>
+      words.map(() => {
+        const x = Math.random() * 90 + 5;
         const y = Math.random() * 90 + 5;
         const duration = 10 + Math.random() * 5;
         const delay = Math.random() * 10;
+        return { x, y, duration, delay };
+      }),
+    []
+  );
 
+  return (
+    <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden z-0">
+      {words.map((word, i) => {
+        const { x, y, duration, delay } = items[i];
         return (
           <motion.span
             key={i}
