@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
+import { LinkButton } from "@/components/ui/Button";
 
 export default function Hero() {
   return (
@@ -33,18 +33,8 @@ export default function Hero() {
           viewport={{ once: true }}
           transition={{ delay: 0.4, duration: 0.6 }}
         >
-          <Link
-            href="#cases"
-            className="rounded-md bg-blue-600 px-6 py-3 font-medium hover:bg-blue-700"
-          >
-            Ver Cases
-          </Link>
-          <Link
-            href="#contato"
-            className="rounded-md border border-white/20 px-6 py-3 font-medium hover:bg-white/5"
-          >
-            Fale Comigo
-          </Link>
+          <LinkButton href="#cases" className="px-6 py-3">Ver Cases</LinkButton>
+          <LinkButton href="#contato" className="px-6 py-3">Agendar Chamada</LinkButton>
         </motion.div>
       </div>
       <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-blue-500/10 via-transparent to-transparent" />

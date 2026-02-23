@@ -2,40 +2,13 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-
-const cases = [
-  {
-    title: "SaaS de Analytics",
-    desc: "Plataforma com ingestão em tempo real e dashboards performáticos.",
-    tags: ["Next.js", "Edge", "ClickHouse"],
-    kpis: ["+38% conversão", "-42% TTFB", "100 CWV"],
-    link: "#",
-  },
-  {
-    title: "E-commerce Headless",
-    desc: "Catálogo dinâmico, SEO técnico e checkout otimizado.",
-    tags: ["React", "Next.js", "Stripe"],
-    kpis: ["+64% receita", "-35% LCP", "+22% orgânico"],
-    link: "#",
-  },
-  {
-    title: "Portal Institucional",
-    desc: "Design minimalista com acessibilidade AA e CMS.",
-    tags: ["Next.js", "CMS", "Vercel"],
-    kpis: ["100/100 Lighthouse", "AA A11y", "CI/CD"],
-    link: "#",
-  },
-];
+import Image from "next/image";
+import Section from "@/components/ui/Section";
+import { cases } from "@/data/cases";
 
 export default function Cases() {
   return (
-    <section id="cases" className="mx-auto max-w-7xl px-4 py-20">
-      <div className="mb-10 text-center">
-        <h2 className="text-3xl font-bold md:text-4xl">Casos de Sucesso</h2>
-        <p className="mt-3 text-white/70">
-          Seleção de projetos com resultados mensuráveis e engenharia sólida.
-        </p>
-      </div>
+    <Section id="cases" title="Casos de Sucesso" subtitle="Seleção de projetos com resultados mensuráveis e engenharia sólida.">
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
         {cases.map((c, i) => (
           <motion.article
@@ -44,8 +17,27 @@ export default function Cases() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: i * 0.1 }}
-            className="group rounded-xl border border-white/10 bg-white/5 p-6 hover:border-blue-500/60"
+            className="group overflow-hidden rounded-xl border border-white/10 bg-white/5 hover:border-blue-500/60"
           >
+            {c.image ? (
+              <Link
+                href={c.link}
+                target={c.link.startsWith("http") ? "_blank" : undefined}
+                rel={c.link.startsWith("http") ? "noopener noreferrer" : undefined}
+                className="block"
+              >
+                <Image
+                  src={c.image}
+                  alt={c.title}
+                  width={1200}
+                  height={675}
+                  sizes="(min-width: 768px) 33vw, 100vw"
+                  className="w-full h-auto object-cover"
+                  priority={false}
+                />
+              </Link>
+            ) : null}
+            <div className="p-6">
             <h3 className="text-xl font-semibold">{c.title}</h3>
             <p className="mt-2 text-sm text-white/70">{c.desc}</p>
             <div className="mt-4 flex flex-wrap gap-2">
@@ -74,9 +66,10 @@ export default function Cases() {
             >
               Ver Detalhes
             </Link>
+            </div>
           </motion.article>
         ))}
       </div>
-    </section>
+    </Section>
   );
 }

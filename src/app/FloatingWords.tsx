@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const words = [
   "React",
@@ -15,6 +15,14 @@ const words = [
 ];
 
 export default function FloatingWords() {
+  const [mounted, setMounted] = useState(false);
+  const [reduced, setReduced] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduced(mq.matches);
+  }, []);
+
   const items = useMemo(
     () =>
       words.map(() => {
@@ -27,8 +35,13 @@ export default function FloatingWords() {
     []
   );
 
+  if (!mounted || reduced) return null;
+
   return (
-    <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden z-0">
+    <div
+      className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden z-0"
+      suppressHydrationWarning
+    >
       {words.map((word, i) => {
         const { x, y, duration, delay } = items[i];
         return (

@@ -3,6 +3,7 @@
  import Link from "next/link";
  import { useState } from "react";
  import { FaGithub, FaBars } from "react-icons/fa";
+ import { LinkButton } from "@/components/ui/Button";
  
  export default function Navbar() {
    const [open, setOpen] = useState(false);
@@ -26,12 +27,10 @@
                <Link href="#stack" className="hover:text-blue-400 transition">Stack</Link>
                <Link href="#provas" className="hover:text-blue-400 transition">Provas</Link>
                <Link href="#contato" className="hover:text-blue-400 transition">Contato</Link>
-               <Link href="https://github.com" target="_blank" className="text-white/80 hover:text-white" aria-label="GitHub">
+              <Link href="https://github.com/heitor1240" target="_blank" className="text-white/80 hover:text-white" aria-label="GitHub">
                  <FaGithub size={20} />
                </Link>
-               <Link href="#contato" className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium hover:bg-blue-700">
-                 Solicitar Proposta
-               </Link>
+              <LinkButton href="#contato">Agendar Chamada</LinkButton>
              </div>
            </nav>
            {open && (
@@ -41,9 +40,9 @@
                  <Link href="#stack" onClick={() => setOpen(false)}>Stack</Link>
                  <Link href="#provas" onClick={() => setOpen(false)}>Provas</Link>
                  <Link href="#contato" onClick={() => setOpen(false)}>Contato</Link>
-                 <Link href="#contato" className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-center hover:bg-blue-700" onClick={() => setOpen(false)}>
-                   Solicitar Proposta
-                 </Link>
+                <LinkButton href="#contato" className="text-center" onClick={() => setOpen(false)}>
+                  Agendar Chamada
+                </LinkButton>
                </div>
              </div>
            )}

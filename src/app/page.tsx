@@ -1,45 +1,19 @@
-"use client";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { FaWhatsapp } from "react-icons/fa";
-import { motion } from "framer-motion";
 
-const FloatingWords = dynamic(() => import("./FloatingWords"), {
-  ssr: false,
-  loading: () => null,
-});
-const CustomCursor = dynamic(() => import("./CustomCursor"), {
-  ssr: false,
-  loading: () => null,
-});
-const Contato = dynamic(() => import("./Contato"), {
-  ssr: false,
-  loading: () => null,
-});
-const Navbar = dynamic(() => import("./sections/Navbar"), {
-  ssr: false,
-  loading: () => null,
-});
-const Hero = dynamic(() => import("./sections/Hero"), {
-  ssr: false,
-  loading: () => null,
-});
-const Cases = dynamic(() => import("./sections/Cases"), {
-  ssr: false,
-  loading: () => null,
-});
-const Stack = dynamic(() => import("./sections/Stack"), {
-  ssr: false,
-  loading: () => null,
-});
-const Testimonials = dynamic(() => import("./sections/Testimonials"), {
-  ssr: false,
-  loading: () => null,
-});
-const Footer = dynamic(() => import("./sections/Footer"), {
-  ssr: false,
-  loading: () => null,
-});
+
+const FloatingWords = dynamic(() => import("./FloatingWords"));
+const CustomCursor = dynamic(() => import("./CustomCursor"));
+const Contato = dynamic(() => import("./Contato"));
+const Navbar = dynamic(() => import("./sections/Navbar"));
+const Hero = dynamic(() => import("./sections/Hero"));
+const Cases = dynamic(() => import("./sections/Cases"));
+const Stack = dynamic(() => import("./sections/Stack"));
+const Testimonials = dynamic(() => import("./sections/Testimonials"));
+const Footer = dynamic(() => import("./sections/Footer"));
+const Process = dynamic(() => import("./sections/Process"));
+const LogoCloud = dynamic(() => import("./sections/LogoCloud"));
 
    
 
@@ -57,30 +31,27 @@ export default function Home() {
 
       <Cases />
       <Stack />
+      <LogoCloud />
+      <Process />
       <Testimonials />
 
 
 <section id="sobre" className="mt-24 max-w-4xl mx-auto text-center">
   <h3 className="text-3xl font-bold mb-8">Sobre Mim</h3>
-  <motion.div
-    className="flex flex-col md:flex-row items-center gap-8"
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 1 }}
-    viewport={{ once: true }}
-  >
+  <div className="flex flex-col md:flex-row items-center gap-8">
     <Image
       src="/perfil.jpg"
       alt="Foto de perfil de Heitor"
       width={160}
       height={160}
+      sizes="(min-width: 768px) 160px, 128px"
+      loading="lazy"
       className="rounded-full object-cover border-4 border-blue-600"
-      priority={false}
     />
     <p className="text-gray-300 text-left">
       Desenvolvedor Full Stack com foco em produtos digitais de alto impacto. Atuo do discovery à entrega com arquitetura limpa, testes e observabilidade.
     </p>
-  </motion.div>
+  </div>
 </section>
 
 {/* CONTATO */ }
